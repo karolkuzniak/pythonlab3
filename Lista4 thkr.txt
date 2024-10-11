@@ -1,0 +1,76 @@
+#Zadanie 1
+#--------------------
+
+from tkinter import *
+
+
+def submit():
+    print("favourite programming language:    ")
+    print(listbox.get(listbox.curselection()))
+
+
+def donothing():
+    filewin = Toplevel(window)
+    button = Button(filewin, text="Kliknij mnie")
+    button.pack()
+
+
+window = Tk()
+menubar = Menu(window)
+window.config(menu=menubar)
+
+fileMenu = Menu(menubar, tearoff=0)
+editmenu = Menu(menubar, tearoff=0)
+helpmenu = Menu(menubar, tearoff=0)
+menubar.add_cascade(label="Plik", menu=fileMenu)
+fileMenu.add_command(label="Nowy", command=donothing)
+fileMenu.add_command(label="Otwórz", command=donothing)
+fileMenu.add_command(label="Zapisz", command=donothing)
+fileMenu.add_command(label="Zapisz jako ...", command=donothing)
+fileMenu.add_command(label="Zamknij", command=donothing)
+fileMenu.add_separator()
+fileMenu.add_command(label="Wyjście", command=window.quit)
+menubar.add_cascade(label="Edycja", menu=editmenu)
+editmenu.add_command(label="Cofnij", command=donothing)
+editmenu.add_separator()
+editmenu.add_command(label="Wytnij", command=donothing)
+editmenu.add_command(label="Kopiuj", command=donothing)
+editmenu.add_command(label="Wklej", command=donothing)
+editmenu.add_command(label="Usuń", command=donothing)
+editmenu.add_command(label="Zaznacz wszystko", command=donothing)
+menubar.add_cascade(label="Pomoc", menu=helpmenu)
+helpmenu.add_command(label="Indeks", command=donothing)
+helpmenu.add_command(label="O programie", command=donothing)
+window.geometry("500x300")
+window.title("Ciekawa aplikacja okienkowa")
+window.config(background="#6E6E6E")
+label = Label(window,
+              text="Wybierz swoj ulubiony jezyk programowania\n(Click to choose)",
+              fg="#434343",
+              bg="#33333",
+              padx=1000,
+              pady=20)
+label.pack()
+my_frame = Frame(window)
+scrollbar = Scrollbar(my_frame, orient=VERTICAL)
+listbox = Listbox(my_frame,
+                  fg="#434343",
+                  bg="#33333",
+                  height=0,
+                  selectmode=SINGLE,
+                  yscrollcommand=scrollbar.set
+                  )
+scrollbar.config(command=listbox.yview)
+scrollbar.pack(side=RIGHT, fill=Y)
+listbox.insert(1, "Python")
+listbox.insert(2, "Mathlab")
+listbox.insert(3, "HTML")
+listbox.pack()
+my_frame.pack()
+submitButton = Button(window,
+                      text="Potwierdz",
+                      command=submit)
+submitButton.place(relx=0.5, rely=0.7, anchor=CENTER)
+
+window.mainloop()
+#------------------------------------------------
